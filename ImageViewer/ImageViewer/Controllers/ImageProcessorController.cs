@@ -34,18 +34,18 @@ namespace ImageViewer.Controllers
                 if (!originalFile.Headers.ContentType.ToString().StartsWith("image"))
                     return BadRequest("You must upload an image.");
 
-                if (!Directory.Exists(HttpContext.Current.Server.MapPath(Constants.TEMP_DIRECTORY)))
-                    Directory.CreateDirectory(HttpContext.Current.Server.MapPath(Constants.TEMP_DIRECTORY));
+                if (!Directory.Exists(HttpContext.Current.Server.MapPath(Constants.TEMP_SAVE_DIRECTORY)))
+                    Directory.CreateDirectory(HttpContext.Current.Server.MapPath(Constants.TEMP_SAVE_DIRECTORY));
 
                 var originalFileName = string.Join(string.Empty, originalFile.Headers.ContentDisposition.FileName.Split(Path.GetInvalidFileNameChars()));
                 var fileName = Guid.NewGuid().ToString();
                 var extension = Path.GetExtension(originalFileName);
 
-                var pdfPath = $"{Constants.TEMP_DIRECTORY}/{fileName}.pdf";
+                var pdfPath = $"{Constants.TEMP_SAVE_DIRECTORY}/{fileName}.pdf";
                 using (var inputStream = await originalFile.ReadAsStreamAsync())
                 {
                     ImageResizer.GetImageSize(inputStream, out int width, out int height);
-                    if (width > 600 || height > 600)
+                    if (width > 700 || height > 700)
                     {
                         var resizedImageStream = ImageResizer.ResizeImage(inputStream, 600, 100L);
                         PdfHelper.SaveImageAsPdf(resizedImageStream, pdfPath);
@@ -59,10 +59,10 @@ namespace ImageViewer.Controllers
 
                     // Save original file
                     using (var image = Image.FromStream(inputStream))
-                        image.Save(HttpContext.Current.Server.MapPath($"{Constants.TEMP_DIRECTORY}/{fileName}{extension}"));
+                        image.Save(HttpContext.Current.Server.MapPath($"{Constants.TEMP_SAVE_DIRECTORY}/{fileName}{extension}"));
                 }
 
-                return Ok(new { url = pdfPath, fileName = $"{fileName}.pdf", folderPath = fileName });
+                return Ok(new { url = $"{Constants.VIRTUAL_SAVE_DIRECTORY}/{fileName}.pdf", fileName = $"{fileName}.pdf", folderPath = fileName });
             }
             catch (Exception ex)
             {
