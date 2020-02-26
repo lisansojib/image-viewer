@@ -78,6 +78,7 @@
     <Compile Include="Models\DownloadFileViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServerControls\ViewerCustomControl.cs" />
+    <Compile Include="ServerControls\WebCustomControl.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".editorconfig" />
