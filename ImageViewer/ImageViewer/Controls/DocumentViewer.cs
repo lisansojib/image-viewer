@@ -71,10 +71,9 @@ namespace ImageViewer
             try
             {
                 string fileExtension = Path.GetExtension(fileVirtualPath);
-                string frameSource = fileVirtualPath;
                 SupportedExtensions extension = (SupportedExtensions)Enum.Parse(typeof(SupportedExtensions), fileExtension.Replace(".", ""));
                 
-                frameSource = string.Format("{0}{1}Scripts/pdf.js/web/viewer.html?file={0}{2}", appDomain, appRootUrl, frameSource);
+                var frameSource = string.Format("{0}{1}Scripts/pdf.js/web/viewer.html?file={0}{2}", appDomain, appRootUrl, fileVirtualPath);
 
                 StringBuilder sb = new StringBuilder();
                 sb.Append("<iframe ");
