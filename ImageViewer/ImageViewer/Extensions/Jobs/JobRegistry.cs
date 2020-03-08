@@ -13,7 +13,7 @@ namespace ImageViewer.Extensions.Jobs
             if (!Directory.Exists(directoryPath))
                 Directory.CreateDirectory(directoryPath);
 
-            Schedule(() => new DirectoryCleanUpJob(directoryPath)).ToRunNow().AndEvery(1).Hours();
+            Schedule(() => new DirectoryCleanUpJob(directoryPath)).ToRunNow().AndEvery(2).Minutes();
         }
     }
 }

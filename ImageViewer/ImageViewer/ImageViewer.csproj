@@ -89,6 +89,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\Proxies\CustomLoader.cs" />
     <Compile Include="App_Start\InitMvcModule.cs" />
     <Compile Include="App_Start\MvcModule.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
@@ -100,6 +101,7 @@
     <Compile Include="Extensions\Jobs\DirectoryCleanUpJob.cs" />
     <Compile Include="Extensions\Jobs\JobRegistry.cs" />
     <Compile Include="Extensions\Providers\InMemoryMultipartFormDataStreamProvider.cs" />
+    <Compile Include="Extensions\Proxies\IJobRegistry.cs" />
     <Compile Include="Extensions\Results\CustomActionResults.cs" />
     <Compile Include="App_Start\InitImageViewer.cs" />
     <Compile Include="Extensions\SupportedExtensions.cs" />
@@ -114,5 +116,8 @@
     <EmbeddedResource Include="Views\DocumentViewer\_Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\FluentScheduler.dll" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
