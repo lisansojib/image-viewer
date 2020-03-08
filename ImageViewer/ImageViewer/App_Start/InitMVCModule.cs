@@ -7,8 +7,6 @@ namespace ImageViewer
     {
         public static void Start()
         {
-            MvcModules.MvcModules.Start();
-
             // Init JobManager
             JobManager.Initialize(new JobRegistry());
         }

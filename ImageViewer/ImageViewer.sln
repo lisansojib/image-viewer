@@ -9,11 +9,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Example", "Example", "{82AD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageViewer.Web", "Example\ImageViewer.Web\ImageViewer.Web.csproj", "{7C131B4D-6FE0-46D1-8FC8-FF9CA6BEB30D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ExternalResources", "ExternalResources", "{96116CFF-5433-45FD-8248-FA8CE2D0506C}"
-	ProjectSection(SolutionItems) = preProject
-		ExternalResources\MvcModules.dll = ExternalResources\MvcModules.dll
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageVeiwer.MVC", "ImageVeiwer.MVC\ImageVeiwer.MVC.csproj", "{BD5ECEE6-B8E8-4243-8385-65426D326E39}"
 EndProject
 Global
