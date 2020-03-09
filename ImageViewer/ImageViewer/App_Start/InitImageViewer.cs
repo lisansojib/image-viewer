@@ -1,6 +1,8 @@
 ﻿using FluentScheduler;
+using ImageViewer.Extensions;
 using ImageViewer.Extensions.Jobs;
 using System;
+using System.Web.Hosting;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -21,7 +23,10 @@ namespace ImageViewer
             );
             #endregion
 
-            #region Init MVC Routes
+            #region Init MVC Module
+            HostingEnvironment.RegisterVirtualPathProvider(new EmbeddedVirtualPathProvider());
+
+            //MvcModules.MvcModules.Start();
             try
             {
                 routes.MapRoute(

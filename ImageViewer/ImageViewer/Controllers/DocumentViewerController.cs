@@ -14,7 +14,8 @@ namespace ImageViewer.Controllers
             ViewBag.Width = Width;
             ViewBag.Height = Height;
             ViewBag.Framesource = string.Format("{0}{1}Scripts/pdf.js/web/viewer.html?file={0}{1}", BaseUrl, FilePath);
-            return PartialView("ImageViewer.views.documentviewer._Index.cshtml");
+            //var content = $"<iframe src=\"{frameSource}\" width=\"{Width}\" height=\"{Height}\"></iframe>";
+            return PartialView("~/Views/DocumentViewer/_Index.cshtml");
         }
 
         #region Helpers
