@@ -87,8 +87,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\Proxies\CustomLoader.cs" />
-    <Compile Include="App_Start\InitMvcModule.cs" />
-    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\DocumentViewerController.cs" />
     <Compile Include="Controllers\ImageProcessorController.cs" />
     <Compile Include="Extensions\Constants.cs" />

@@ -5,3 +5,6 @@ dotnet_diagnostic.CA1031.severity = none
 
 # CA3147: Mark Verb Handlers With Validate Antiforgery Token
 dotnet_diagnostic.CA3147.severity = none
+
+# CA1052: Static holder types should be Static or NotInheritable
+dotnet_diagnostic.CA1052.severity = none

@@ -1,7 +1,8 @@
-﻿using System.Web.Mvc;
+﻿using ImageViewer;
+using System.Web.Http;
+using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using ImageViewer;
 
 namespace ImageVeiwer.MVC
 {
@@ -9,7 +10,9 @@ namespace ImageVeiwer.MVC
     {
         protected void Application_Start()
         {
-            InitMvcModule.Start();
+            // Code that runs on application startup
+            GlobalConfiguration.Configure(config => InitImageViewer.Init(config, RouteTable.Routes));
+
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

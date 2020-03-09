@@ -1,7 +1,5 @@
 ﻿using System.Web.Mvc;
 using System.Web;
-using System;
-using System.Web.UI;
 
 namespace ImageViewer.Controllers
 {
@@ -11,12 +9,12 @@ namespace ImageViewer.Controllers
         {
         }
 
-        public PartialViewResult Index(string filePath, int width = 1000, int height = 800)
+        public PartialViewResult Index(string FilePath, int Width = 1000, int Height = 800)
         {
-            ViewBag.Width = width;
-            ViewBag.Height = height;
-            ViewBag.Framesource = string.Format("{0}{1}Scripts/pdf.js/web/viewer.html?file={0}{1}", BaseUrl, filePath);
-            return PartialView("_Index");
+            ViewBag.Width = Width;
+            ViewBag.Height = Height;
+            ViewBag.Framesource = string.Format("{0}{1}Scripts/pdf.js/web/viewer.html?file={0}{1}", BaseUrl, FilePath);
+            return PartialView("ImageViewer.views.documentviewer._Index.cshtml");
         }
 
         #region Helpers

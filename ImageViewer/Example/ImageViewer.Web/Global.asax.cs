@@ -11,7 +11,8 @@ namespace ImageViewer.Web
         void Application_Start(object sender, EventArgs e)
         {
             // Code that runs on application startup
-            GlobalConfiguration.Configure(ImageViewer.InitImageViewer.Register);
+            GlobalConfiguration.Configure(config => InitImageViewer.Init(config, RouteTable.Routes));
+
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
