@@ -101,25 +101,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\ImageViewerModule.cs" />
     <Compile Include="App_Start\RazorGeneratorMvcStart.cs" />
     <Compile Include="Extensions\EmbeddedVirtualPathProvider.cs" />
-    <Compile Include="Extensions\MvcModules\HtmlExtensions.cs" />
-    <Compile Include="Extensions\MvcModules\IHostFileSystem.cs" />
-    <Compile Include="Extensions\MvcModules\MvcModuleBase.cs" />
-    <Compile Include="Extensions\MvcModules\MvcModuleContentBundles.cs" />
-    <Compile Include="Extensions\MvcModules\MvcModuleContentPath.cs" />
-    <Compile Include="Extensions\MvcModules\MvcModuleEmbeddedFS.cs" />
-    <Compile Include="Extensions\MvcModules\MvcModules.cs" />
-    <Compile Include="Extensions\MvcModules\MvcModuleVirtualDirectory.cs" />
-    <Compile Include="Extensions\MvcModules\MvcModuleVirtualFile.cs" />
-    <Compile Include="Extensions\MvcModules\MvcVirtualPathProvider.cs" />
-    <Compile Include="Extensions\MvcModules\Utils\CryptUtils.cs" />
-    <Compile Include="Extensions\MvcModules\Utils\ExceptionUtils.cs" />
-    <Compile Include="Extensions\MvcModules\Utils\FileUrl.cs" />
-    <Compile Include="Extensions\MvcModules\Utils\FileUtils.cs" />
-    <Compile Include="Extensions\MvcModules\Utils\ObjectUtils.cs" />
-    <Compile Include="Extensions\Proxies\CustomLoader.cs" />
     <Compile Include="Controllers\DocumentViewerController.cs" />
     <Compile Include="Controllers\ImageProcessorController.cs" />
     <Compile Include="Extensions\Constants.cs" />
@@ -128,7 +111,6 @@
     <Compile Include="Extensions\Jobs\DirectoryCleanUpJob.cs" />
     <Compile Include="Extensions\Jobs\JobRegistry.cs" />
     <Compile Include="Extensions\Providers\InMemoryMultipartFormDataStreamProvider.cs" />
-    <Compile Include="Extensions\Proxies\IJobRegistry.cs" />
     <Compile Include="Extensions\Results\CustomActionResults.cs" />
     <Compile Include="App_Start\InitImageViewer.cs" />
     <Compile Include="Extensions\SupportedExtensions.cs" />

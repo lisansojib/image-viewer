@@ -26,7 +26,6 @@ namespace ImageViewer
             #region Init MVC Module
             HostingEnvironment.RegisterVirtualPathProvider(new EmbeddedVirtualPathProvider());
 
-            //MvcModules.MvcModules.Start();
             try
             {
                 routes.MapRoute(
