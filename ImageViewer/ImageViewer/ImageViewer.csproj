@@ -135,26 +135,21 @@
     <Compile Include="Controls\DocumentViewer.cs" />
     <Compile Include="Models\DownloadFileViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include=".editorconfig" />
-    <None Include="app.config" />
-    <None Include="packages.config" />
     <Compile Include="Views\DocumentViewer\Index.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Index.cshtml</DependentUpon>
     </Compile>
-    <Compile Include="Views\DocumentViewer\_Index.cshtml">
-      <Generator>RazorGenerator</Generator>
-      <LastGenOutput>_Index.generated.cs</LastGenOutput>
-      <CustomToolNamespace>ImageViewer</CustomToolNamespace>
-    </Compile>
-    <Content Include="Views\DocumentViewer\Index.cshtml">
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".editorconfig" />
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Views\DocumentViewer\Index.cshtml">
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>Index.generated.cs</LastGenOutput>
-      <CustomToolNamespace>ImageViewer</CustomToolNamespace>
-    </Content>
+      <CustomToolNamespace>ImageViewer.Views.DocumentViewer</CustomToolNamespace>
+    </None>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -9,7 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ASP
+namespace ImageViewer.Views.DocumentViewer
 {
     using System;
     using System.Collections.Generic;
@@ -68,7 +68,7 @@ WriteAttribute("height", Tuple.Create(" height=\"", 57), Tuple.Create("\"", 81)
 , 66), false)
 );
 
-WriteLiteral("></iframe>\r\n");
+WriteLiteral("></iframe>");
 
         }
     }
