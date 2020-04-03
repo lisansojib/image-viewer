@@ -102,6 +102,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RazorGeneratorMvcStart.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="Extensions\EmbeddedVirtualPathProvider.cs" />
     <Compile Include="Controllers\DocumentViewerController.cs" />
     <Compile Include="Controllers\ImageProcessorController.cs" />
@@ -133,6 +134,8 @@
       <CustomToolNamespace>ImageViewer.Views.DocumentViewer</CustomToolNamespace>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\index.js" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -28,17 +28,11 @@ See https://github.com/adobe-type-tools/cmap-resources
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>PDF.js viewer</title>
 
-
     <link rel="stylesheet" href="viewer.css">
-
-
-<!-- This snippet is used in production (included from viewer.html) -->
-<link rel="resource" type="application/l10n" href="locale/locale.properties">
-<script src="../build/pdf.js"></script>
-
-
+    <!-- This snippet is used in production (included from viewer.html) -->
+    <link rel="resource" type="application/l10n" href="locale/locale.properties">
+    <script src="../build/pdf.js"></script>
     <script src="viewer.js"></script>
-
   </head>
 
   <body tabindex="1" class="loadingInProgress">
@@ -389,6 +383,40 @@ See https://github.com/adobe-type-tools/cmap-resources
 
     </div> <!-- outerContainer -->
     <div id="printContainer"></div>
+
+    <script>
+        debugger;
+        var queryString = document.location.search.substring(1);
+        var params = parseQueryString(queryString);
+
+        if (params.indexjssrc)
+            addScript(params.indexjssrc);
+
+        /**
+       * Helper function to parse query string (e.g. ?param1=value&parm2=...).
+       */
+        function parseQueryString(query) {
+            const parts = query.split("&");
+            const params = Object.create(null);
+            for (let i = 0, ii = parts.length; i < ii; ++i) {
+                const param = parts[i].split("=");
+                const key = param[0].toLowerCase();
+                const value = param.length > 1 ? param[1] : null;
+                params[decodeURIComponent(key)] = decodeURIComponent(value);
+            }
+            return params;
+        }
+
+        /**
+         * add script tag
+         * @param src
+         */
+        function addScript(src) {
+            var s = document.createElement('script');
+            s.setAttribute('src', src);
+            document.body.appendChild(s);
+        }
+    </script>
   </body>
 </html>
 

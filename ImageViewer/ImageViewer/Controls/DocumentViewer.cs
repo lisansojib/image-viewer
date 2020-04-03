@@ -49,7 +49,12 @@ namespace ImageViewer
                 tempDirectoryPath = string.IsNullOrEmpty(value) ? string.Empty : value;
             }
         }
-        
+
+        protected override void OnInit(EventArgs e)
+        {
+            base.OnInit(e);
+        }
+
         public override void RenderControl(HtmlTextWriter writer)
         {
             try
@@ -72,8 +77,10 @@ namespace ImageViewer
             {
                 string fileExtension = Path.GetExtension(fileVirtualPath);
                 SupportedExtensions extension = (SupportedExtensions)Enum.Parse(typeof(SupportedExtensions), fileExtension.Replace(".", ""));
-                
-                var frameSource = string.Format("{0}{1}Scripts/pdf.js/web/viewer.html?file={0}{2}", appDomain, appRootUrl, fileVirtualPath);
+
+                var indexJsSrc = HttpUtility.UrlEncode(Page.ClientScript.GetWebResourceUrl(this.GetType(), EmbededResource.IndexJs));
+
+                var frameSource = string.Format("{0}{1}Scripts/pdf.js/web/viewer.html?file={0}{2}&indexJsSrc={3}", appDomain, appRootUrl, fileVirtualPath, indexJsSrc);                
 
                 StringBuilder sb = new StringBuilder();
                 sb.Append("<iframe ");
