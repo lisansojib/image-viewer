@@ -4,6 +4,7 @@ using ImageViewer.Extensions.Jobs;
 using System;
 using System.Web.Hosting;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Mvc;
 using System.Web.Routing;
 
@@ -14,6 +15,9 @@ namespace ImageViewer
         public static void Init(HttpConfiguration config, RouteCollection routes)
         {
             #region Configure WebApi
+            var corsAttr = new EnableCorsAttribute("https://lisansojib.github.io/", "*", "*");
+            config.EnableCors(corsAttr);
+
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
