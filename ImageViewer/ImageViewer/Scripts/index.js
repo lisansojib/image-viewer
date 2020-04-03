@@ -1,3 +1,3 @@
 (function () {
-    alert("Hello, I'm working.");
+    alert("Hello from embeded script.");
 })();

@@ -79,8 +79,11 @@ namespace ImageViewer
                 SupportedExtensions extension = (SupportedExtensions)Enum.Parse(typeof(SupportedExtensions), fileExtension.Replace(".", ""));
 
                 var indexJsSrc = HttpUtility.UrlEncode(Page.ClientScript.GetWebResourceUrl(this.GetType(), EmbededResource.IndexJs));
+                var pdfJsSrc = HttpUtility.UrlEncode(Page.ClientScript.GetWebResourceUrl(this.GetType(), EmbededResource.PdfJs));
+                var viewerJsSrc = HttpUtility.UrlEncode(Page.ClientScript.GetWebResourceUrl(this.GetType(), EmbededResource.ViewerJsSrc));
 
-                var frameSource = string.Format("{0}{1}Scripts/pdf.js/web/viewer.html?file={0}{2}&indexJsSrc={3}", appDomain, appRootUrl, fileVirtualPath, indexJsSrc);                
+                var frameSource = string.Format("{0}{1}Scripts/pdf.js/web/viewer.html?file={0}{2}&pdfJsSrc={3}&viewerJsSrc={4}&indexJsSrc={5}"
+                    , appDomain, appRootUrl, fileVirtualPath, pdfJsSrc, viewerJsSrc, indexJsSrc);                
 
                 StringBuilder sb = new StringBuilder();
                 sb.Append("<iframe ");

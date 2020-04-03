@@ -36,3 +36,6 @@ using ImageViewer;
 [assembly: AssemblyFileVersion("1.0.0.0")]
 
 [assembly: System.Web.UI.WebResource(EmbededResource.IndexJs, EmbededResourceType.TextOrJs)]
+[assembly: System.Web.UI.WebResource(EmbededResource.RequireJs, EmbededResourceType.TextOrJs)]
+[assembly: System.Web.UI.WebResource(EmbededResource.PdfJs, EmbededResourceType.TextOrJs)]
+[assembly: System.Web.UI.WebResource(EmbededResource.ViewerJsSrc, EmbededResourceType.TextOrJs)]
