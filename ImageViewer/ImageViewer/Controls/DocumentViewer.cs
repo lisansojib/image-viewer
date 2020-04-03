@@ -1,8 +1,6 @@
-﻿using ImageViewer.Extensions;
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Drawing.Design;
-using System.IO;
 using System.Text;
 using System.Web;
 using System.Web.UI;

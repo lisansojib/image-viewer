@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageViewer.Web", "Example\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageVeiwer.MVC", "ImageVeiwer.MVC\ImageVeiwer.MVC.csproj", "{BD5ECEE6-B8E8-4243-8385-65426D326E39}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageViewer.WebR", "Example\ImageViewer.WebR\ImageViewer.WebR.csproj", "{EFA34D59-8ED9-454B-A918-46F6D58F8CB4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{BD5ECEE6-B8E8-4243-8385-65426D326E39}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD5ECEE6-B8E8-4243-8385-65426D326E39}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD5ECEE6-B8E8-4243-8385-65426D326E39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFA34D59-8ED9-454B-A918-46F6D58F8CB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFA34D59-8ED9-454B-A918-46F6D58F8CB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFA34D59-8ED9-454B-A918-46F6D58F8CB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFA34D59-8ED9-454B-A918-46F6D58F8CB4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -36,6 +42,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{7C131B4D-6FE0-46D1-8FC8-FF9CA6BEB30D} = {82ADE9B4-CD64-4FD3-9B2A-ED79B136DC7E}
 		{BD5ECEE6-B8E8-4243-8385-65426D326E39} = {82ADE9B4-CD64-4FD3-9B2A-ED79B136DC7E}
+		{EFA34D59-8ED9-454B-A918-46F6D58F8CB4} = {82ADE9B4-CD64-4FD3-9B2A-ED79B136DC7E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {030AC3D9-A016-48F9-AB4C-E5185A246EE7}
