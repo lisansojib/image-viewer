@@ -53,6 +53,7 @@
       <HintPath>..\packages\RazorGenerator.Mvc.2.4.9\lib\net40\RazorGenerator.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
@@ -112,7 +113,6 @@
     <Compile Include="Extensions\EmbeddedVirtualPathProvider.cs" />
     <Compile Include="Controllers\DocumentViewerController.cs" />
     <Compile Include="Controllers\ImageProcessorController.cs" />
-    <Compile Include="Extensions\Constants.cs" />
     <Compile Include="Extensions\Helpers\ImageResizer.cs" />
     <Compile Include="Extensions\Helpers\PdfHelper.cs" />
     <Compile Include="Extensions\Jobs\DirectoryCleanUpJob.cs" />

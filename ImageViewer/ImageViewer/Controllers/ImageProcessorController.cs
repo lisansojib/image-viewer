@@ -1,5 +1,4 @@
-﻿using ImageViewer.Extensions;
-using ImageViewer.Extensions.Helpers;
+﻿using ImageViewer.Extensions.Helpers;
 using ImageViewer.Extensions.Providers;
 using ImageViewer.Extensions.Results;
 using ImageViewer.Models;
@@ -34,14 +33,14 @@ namespace ImageViewer.Controllers
                 if (!originalFile.Headers.ContentType.ToString().StartsWith("image"))
                     return BadRequest("You must upload an image.");
 
-                if (!Directory.Exists(HttpContext.Current.Server.MapPath(Constants.TEMP_SAVE_DIRECTORY)))
-                    Directory.CreateDirectory(HttpContext.Current.Server.MapPath(Constants.TEMP_SAVE_DIRECTORY));
+                if (!Directory.Exists(HttpContext.Current.Server.MapPath(Constants.TEMP_DIRECTORY)))
+                    Directory.CreateDirectory(HttpContext.Current.Server.MapPath(Constants.TEMP_DIRECTORY));
 
                 var originalFileName = string.Join(string.Empty, originalFile.Headers.ContentDisposition.FileName.Split(Path.GetInvalidFileNameChars()));
                 var fileName = Guid.NewGuid().ToString();
                 var extension = Path.GetExtension(originalFileName);
 
-                var pdfPath = $"{Constants.TEMP_SAVE_DIRECTORY}/{fileName}.pdf";
+                var pdfPath = $"{Constants.TEMP_DIRECTORY}/{fileName}.pdf";
                 using (var inputStream = await originalFile.ReadAsStreamAsync())
                 {
                     ImageResizer.GetImageSize(inputStream, out int width, out int height);
@@ -59,10 +58,13 @@ namespace ImageViewer.Controllers
 
                     // Save original file
                     using (var image = Image.FromStream(inputStream))
-                        image.Save(HttpContext.Current.Server.MapPath($"{Constants.TEMP_SAVE_DIRECTORY}/{fileName}{extension}"));
+                        image.Save(HttpContext.Current.Server.MapPath($"{Constants.TEMP_DIRECTORY}/{fileName}{extension}"));
                 }
 
-                return Ok(new { url = $"{Constants.VIRTUAL_SAVE_DIRECTORY}/{fileName}.pdf", fileName = $"{fileName}.pdf", folderPath = fileName });
+                var uri = new Uri(Request.RequestUri, RequestContext.VirtualPathRoot);
+                uri = new Uri(uri, VirtualPathUtility.ToAbsolute($"{Constants.TEMP_DIRECTORY}/{fileName}.pdf"));
+
+                return Ok(new { url = uri.OriginalString, fileName = $"{fileName}.pdf"});
             }
             catch (Exception ex)
             {

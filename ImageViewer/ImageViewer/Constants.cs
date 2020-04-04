@@ -1,5 +1,12 @@
-﻿namespace ImageViewer
+﻿using System.Configuration;
+
+namespace ImageViewer
 {
+    public static class Constants
+    {
+        public static string TEMP_DIRECTORY => ConfigurationManager.AppSettings["TempDirectory"];
+    }
+
     public static class EmbededResource
     {
         public const string IndexJs = "ImageViewer.Scripts.index.js";

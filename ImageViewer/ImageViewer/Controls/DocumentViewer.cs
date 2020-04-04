@@ -13,6 +13,11 @@ namespace ImageViewer
     [ToolboxData("<{0}:DocumentViewer runat=server></{0}:DocumentViewer>")]
     public class DocumentViewer : WebControl
     {
+        public DocumentViewer()
+        {
+            IsMinified = true;
+        }
+
         private string filePath;
 
         [Category("Source File")]
@@ -36,6 +41,12 @@ namespace ImageViewer
         [Description("Set if PDF viwer is remote or locally hosted.")]
         [UrlProperty, Editor(typeof(UrlEditor), typeof(UITypeEditor))]
         public bool IsRemote { get; set; }
+
+        [Category("PDF viewer file minification")]
+        [Browsable(true)]
+        [Description("Set if PDF viwer files is minified or not.")]
+        [UrlProperty, Editor(typeof(UrlEditor), typeof(UITypeEditor))]
+        public bool IsMinified { get; set; }
 
         public override void RenderControl(HtmlTextWriter writer)
         {
@@ -85,12 +96,16 @@ namespace ImageViewer
         public StringBuilder BuildControl(string fileVirtualPath, string appDomain)
         {
             try
-            {   
-                var frameSource = "https://lisansojib.github.io/pdfjs-dist/web/viewer.html";
+            {
+                var folderPath = IsMinified ? "minified" : "generic";
+                var frameSource = $"https://lisansojib.github.io/pdfjs-dist/{folderPath}/web/viewer.html";
 
                 var fileUrl = HttpUtility.UrlEncode($"{appDomain}{fileVirtualPath}");
-                if (string.IsNullOrEmpty(fileUrl))
+                if (!string.IsNullOrEmpty(fileUrl))
                     frameSource += $"?file={fileUrl}";
+
+                var baseUrl = HttpUtility.UrlEncode($"{appDomain}");
+                frameSource += $"&baseUrl={baseUrl}";
 
                 StringBuilder sb = new StringBuilder();
                 sb.Append("<iframe ");

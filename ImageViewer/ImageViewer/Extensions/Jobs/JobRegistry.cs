@@ -8,7 +8,7 @@ namespace ImageViewer.Extensions.Jobs
     {
         public JobRegistry()
         {
-            var directoryPath = HttpContext.Current.Server.MapPath(Constants.TEMP_SAVE_DIRECTORY);
+            var directoryPath = HttpContext.Current.Server.MapPath(Constants.TEMP_DIRECTORY);
 
             if (!Directory.Exists(directoryPath))
                 Directory.CreateDirectory(directoryPath);

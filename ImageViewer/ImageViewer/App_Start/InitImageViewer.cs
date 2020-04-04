@@ -1,7 +1,6 @@
 ﻿using FluentScheduler;
 using ImageViewer.Extensions;
 using ImageViewer.Extensions.Jobs;
-using System;
 using System.Web.Hosting;
 using System.Web.Http;
 using System.Web.Http.Cors;
@@ -15,7 +14,7 @@ namespace ImageViewer
         public static void Init(HttpConfiguration config, RouteCollection routes)
         {
             #region Configure WebApi
-            var corsAttr = new EnableCorsAttribute("https://lisansojib.github.io/", "*", "*");
+            var corsAttr = new EnableCorsAttribute("https://mozilla.github.io", "*", "*");
             config.EnableCors(corsAttr);
 
             config.MapHttpAttributeRoutes();
@@ -30,18 +29,11 @@ namespace ImageViewer
             #region Init MVC Module
             HostingEnvironment.RegisterVirtualPathProvider(new EmbeddedVirtualPathProvider());
 
-            try
-            {
-                routes.MapRoute(
-                    name: "ImageViewer",
-                    url: "ImageViewer/{action}/{id}",
-                    defaults: new { controller = "DocumentViewer", action = "Index", id = UrlParameter.Optional }
-                );
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            routes.MapRoute(
+                name: "ImageViewer",
+                url: "ImageViewer/{action}/{id}",
+                defaults: new { controller = "DocumentViewer", action = "Index", id = UrlParameter.Optional }
+            );
             #endregion
 
             #region Init Job Manager
