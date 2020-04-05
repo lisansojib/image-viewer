@@ -140,7 +140,9 @@
       <CustomToolNamespace>ImageViewer.Views.DocumentViewer</CustomToolNamespace>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="ViewerProperties.txt" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Scripts\index.js" />
   </ItemGroup>

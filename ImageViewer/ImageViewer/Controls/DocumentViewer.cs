@@ -15,39 +15,100 @@ namespace ImageViewer
     {
         public DocumentViewer()
         {
+            EnableFindButton = true;
             IsMinified = true;
+            IsRemote = true;
+            EnableOpenButton = true;
+            EnablePrintButton = true;
+            EnableDownloadButton = true;
+            EnableRotateButton = true;
+            EnableFindButton = true;
+            EnableScaleSelectCombo = true;
+            EnableZoomInZoomOutButton = true;
+            EnableDisplayThumbnailList = true;
+            EnableTextSelectionTool = true;
+            ShowDocumentProperties = true;
         }
 
-        private string filePath;
-
+        #region Properties
         [Category("Source File")]
         [Browsable(true)]
         [Description("Set path to source file.")]
         [UrlProperty, Editor(typeof(UrlEditor), typeof(UITypeEditor))]
-        public string FilePath
-        {
-            get
-            {
-                return filePath;
-            }
-            set
-            {
-                filePath = string.IsNullOrEmpty(value) ? string.Empty : value;
-            }
-        }
+        public string FilePath { get; set; }
 
-        [Category("PDF viewer mode")]
+        [Category("View Scale")]
+        [Browsable(true)]
+        [Description("Pdf Viewer scale on brower (i.e 1.25 for 125% zoom)")]
+        public string ScaleSelect { get; set; }
+
+        [Category("Enable/Disable button")]
+        [Browsable(true)]
+        [Description("Enable/Disable Fullscreen button.")]
+        public bool EnableFullScreenButton { get; set; }
+
+        [Category("Enable/Disable button")]
+        [Browsable(true)]
+        [Description("Enable/Disable Open button.")]
+        public bool EnableOpenButton { get; set; }
+
+        [Category("Enable/Disable button")]
+        [Browsable(true)]
+        [Description("Enable/Disable Print button.")]
+        public bool EnablePrintButton { get; set; }
+
+        [Category("Enable/Disable button")]
+        [Browsable(true)]
+        [Description("Enable/Disable Download button.")]
+        public bool EnableDownloadButton { get; set; }
+
+        [Category("Enable/Disable button")]
+        [Browsable(true)]
+        [Description("Enable/Disable Rotate button.")]
+        public bool EnableRotateButton { get; set; }
+
+        [Category("Enable/Disable button")]
+        [Browsable(true)]
+        [Description("Enable/Disable Find button.")]
+        public bool EnableFindButton { get; set; }
+
+        [Category("Enable/Disable button")]
+        [Browsable(true)]
+        [Description("Enable/Disable View Scale Combo.")]
+        public bool EnableScaleSelectCombo { get; set; }
+
+        [Category("Enable/Disable button")]
+        [Browsable(true)]
+        [Description("Enable/Disable Zoom In and Zoom Out button.")]
+        public bool EnableZoomInZoomOutButton { get; set; }
+
+        [Category("Enable/Disable button")]
+        [Browsable(true)]
+        [Description("Enable/Disable Display Thumbnail List.")]
+        public bool EnableDisplayThumbnailList { get; set; }
+
+        [Category("Enable/Disable button")]
+        [Browsable(true)]
+        [Description("Enable/Disable Enable Text Selection Tool.")]
+        public bool EnableTextSelectionTool { get; set; }
+
+        [Category("Show/Hide button")]
+        [Browsable(true)]
+        [Description("Show/Hide Show Document Properties Tool.")]
+        public bool ShowDocumentProperties { get; set; }
+
+        [Category("Viewer Source")]
         [Browsable(true)]
         [Description("Set if PDF viwer is remote or locally hosted.")]
-        [UrlProperty, Editor(typeof(UrlEditor), typeof(UITypeEditor))]
         public bool IsRemote { get; set; }
 
-        [Category("PDF viewer file minification")]
+        [Category("Minification")]
         [Browsable(true)]
         [Description("Set if PDF viwer files is minified or not.")]
-        [UrlProperty, Editor(typeof(UrlEditor), typeof(UITypeEditor))]
         public bool IsMinified { get; set; }
+        #endregion
 
+        #region Methods
         public override void RenderControl(HtmlTextWriter writer)
         {
             try
@@ -70,12 +131,33 @@ namespace ImageViewer
         {
             try
             {
-                var indexJsSrc = HttpUtility.UrlEncode(Page.ClientScript.GetWebResourceUrl(this.GetType(), EmbededResource.IndexJs));
-                var pdfJsSrc = HttpUtility.UrlEncode(Page.ClientScript.GetWebResourceUrl(this.GetType(), EmbededResource.PdfJs));
-                var viewerJsSrc = HttpUtility.UrlEncode(Page.ClientScript.GetWebResourceUrl(this.GetType(), EmbededResource.ViewerJsSrc));
+                var frameSource = $"{appDomain}{appRootUrl}Scripts/pdf.js/web/viewer.html";
 
-                var frameSource = string.Format("{0}{1}Scripts/pdf.js/web/viewer.html?file={0}{2}&pdfJsSrc={3}&viewerJsSrc={4}&indexJsSrc={5}"
-                    , appDomain, appRootUrl, fileVirtualPath, pdfJsSrc, viewerJsSrc, indexJsSrc);                
+                var fileUrl = HttpUtility.UrlEncode($"{appDomain}{fileVirtualPath}");
+                if (!string.IsNullOrEmpty(fileUrl))
+                    frameSource += $"?file={fileUrl}";
+
+                var baseUrl = HttpUtility.UrlEncode($"{appDomain}");
+                frameSource += $"&baseUrl={baseUrl}";
+
+                if (!string.IsNullOrEmpty(ScaleSelect))
+                    frameSource += $"&scaleSelect={ScaleSelect}";
+
+                frameSource += $"&showFullScreenButton={EnableFullScreenButton}";
+                frameSource += $"&showopenbutton={EnableOpenButton}";
+                frameSource += $"&showprintbutton={EnablePrintButton}";
+                frameSource += $"&showdownloadbutton={EnableDownloadButton}";
+                frameSource += $"&showrotatebuttons={EnableRotateButton}";
+                frameSource += $"&showfindbutton={EnableFindButton}";
+                frameSource += $"&showscaleSelect={EnableScaleSelectCombo}";
+                frameSource += $"&showzoominzoomoutbuttons={EnableZoomInZoomOutButton}";
+                frameSource += $"&showthumbnaillist={EnableDisplayThumbnailList}";
+                frameSource += $"&showoutlinebutton={EnableTextSelectionTool}";
+                frameSource += $"&showdocumentpropertiesbutton={ShowDocumentProperties}";
+
+                //var indexJsSrc = HttpUtility.UrlEncode(Page.ClientScript.GetWebResourceUrl(this.GetType(), EmbededResource.IndexJs));
+                //var pdfJsSrc = HttpUtility.UrlEncode(Page.ClientScript.GetWebResourceUrl(this.GetType(), EmbededResource.PdfJs));
+                //var viewerJsSrc = HttpUtility.UrlEncode(Page.ClientScript.GetWebResourceUrl(this.GetType(), EmbededResource.ViewerJsSrc));
 
                 StringBuilder sb = new StringBuilder();
                 sb.Append("<iframe ");
@@ -107,6 +189,21 @@ namespace ImageViewer
                 var baseUrl = HttpUtility.UrlEncode($"{appDomain}");
                 frameSource += $"&baseUrl={baseUrl}";
 
+                if(!string.IsNullOrEmpty(ScaleSelect))
+                    frameSource += $"&scaleSelect={ScaleSelect}";
+
+                frameSource += $"&showFullScreenButton={EnableFullScreenButton}";
+                frameSource += $"&showopenbutton={EnableOpenButton}";
+                frameSource += $"&showprintbutton={EnablePrintButton}";
+                frameSource += $"&showdownloadbutton={EnableDownloadButton}";
+                frameSource += $"&showrotatebuttons={EnableRotateButton}";
+                frameSource += $"&showfindbutton={EnableFindButton}";
+                frameSource += $"&showscaleSelect={EnableScaleSelectCombo}";
+                frameSource += $"&showzoominzoomoutbuttons={EnableZoomInZoomOutButton}";
+                frameSource += $"&showthumbnaillist={EnableDisplayThumbnailList}";
+                frameSource += $"&showoutlinebutton={EnableTextSelectionTool}";
+                frameSource += $"&showdocumentpropertiesbutton={ShowDocumentProperties}";
+
                 StringBuilder sb = new StringBuilder();
                 sb.Append("<iframe ");
                 if (!string.IsNullOrEmpty(ID))
@@ -122,5 +219,6 @@ namespace ImageViewer
                 return new StringBuilder("Cannot display document viewer");
             }
         }
+        #endregion
     }
 }
