@@ -1,4 +1,4 @@
-﻿<%@ Page Title='About' Language='C#' AutoEventWireup='true' MasterPageFile="~/Site.Master" CodeBehind='About.aspx.cs' Inherits='ImageViewer.Web.About' %>
+﻿<%@ Page Title='About' Language='C#' AutoEventWireup='true' MasterPageFile="~/Site.Master" CodeBehind='About.aspx.cs' Inherits='ImageViewer.WebR.About' %>
 <%@ Register Assembly="ImageViewer" Namespace="ImageViewer" TagPrefix="cc" %>
 
 <asp:Content ID='BodyContent' ContentPlaceHolderID='MainContent' runat='server'>

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ImageViewer.Web
+namespace ImageViewer.WebR
 {
 
 

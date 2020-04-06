@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Optimization;
 using System.Web.UI;
 
-namespace ImageViewer.Web
+namespace ImageViewer.WebR
 {
     public class BundleConfig
     {
