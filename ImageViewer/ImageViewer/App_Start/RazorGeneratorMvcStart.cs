@@ -3,7 +3,7 @@ using System.Web.Mvc;
 using System.Web.WebPages;
 using RazorGenerator.Mvc;
 
-[assembly: WebActivatorEx.PostApplicationStartMethod(typeof(ImageViewer.RazorGeneratorMvcStart), "Start")]
+//[assembly: WebActivatorEx.PostApplicationStartMethod(typeof(ImageViewer.RazorGeneratorMvcStart), "Start")]
 
 namespace ImageViewer {
     public static class RazorGeneratorMvcStart {

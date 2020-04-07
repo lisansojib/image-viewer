@@ -109,6 +109,10 @@ namespace ImageViewer
         #endregion
 
         #region Methods
+        /// <summary>
+        /// Render Server control
+        /// </summary>
+        /// <param name="writer"></param>
         public override void RenderControl(HtmlTextWriter writer)
         {
             try
@@ -127,6 +131,13 @@ namespace ImageViewer
             }
         }
 
+        /// <summary>
+        /// Build Control for locally served pdf.js with server control
+        /// </summary>
+        /// <param name="fileVirtualPath"></param>
+        /// <param name="appDomain"></param>
+        /// <param name="appRootUrl"></param>
+        /// <returns></returns>
         public StringBuilder BuildControl(string fileVirtualPath, string appDomain, string appRootUrl)
         {
             try
@@ -155,9 +166,19 @@ namespace ImageViewer
                 frameSource += $"&showoutlinebutton={EnableTextSelectionTool}";
                 frameSource += $"&showdocumentpropertiesbutton={ShowDocumentProperties}";
 
-                //var indexJsSrc = HttpUtility.UrlEncode(Page.ClientScript.GetWebResourceUrl(this.GetType(), EmbededResource.IndexJs));
-                //var pdfJsSrc = HttpUtility.UrlEncode(Page.ClientScript.GetWebResourceUrl(this.GetType(), EmbededResource.PdfJs));
-                //var viewerJsSrc = HttpUtility.UrlEncode(Page.ClientScript.GetWebResourceUrl(this.GetType(), EmbededResource.ViewerJsSrc));
+                #region Embeded Js
+                var indexJsSrc = HttpUtility.UrlEncode(Page.ClientScript.GetWebResourceUrl(GetType(), EmbededResource.IndexJs));
+                frameSource += $"&indexJsSrc={indexJsSrc}";
+
+                var pdfJsSrc = HttpUtility.UrlEncode(Page.ClientScript.GetWebResourceUrl(GetType(), EmbededResource.PdfJs));
+                frameSource += $"&pdfJsSrc={pdfJsSrc}";
+
+                var pdfWorkserJsSrc = HttpUtility.UrlEncode(Page.ClientScript.GetWebResourceUrl(GetType(), EmbededResource.PdfWorkerJs));
+                frameSource += $"&pdfWorkserJsSrc={pdfWorkserJsSrc}";
+
+                var viewerJsSrc = HttpUtility.UrlEncode(Page.ClientScript.GetWebResourceUrl(GetType(), EmbededResource.ViewerJs));
+                frameSource += $"&viewerJsSrc={viewerJsSrc}";
+                #endregion
 
                 StringBuilder sb = new StringBuilder();
                 sb.Append("<iframe ");
@@ -175,6 +196,12 @@ namespace ImageViewer
             }
         }
 
+        /// <summary>
+        /// Build for remotely hosted pdf.js library
+        /// </summary>
+        /// <param name="fileVirtualPath"></param>
+        /// <param name="appDomain"></param>
+        /// <returns></returns>
         public StringBuilder BuildControl(string fileVirtualPath, string appDomain)
         {
             try

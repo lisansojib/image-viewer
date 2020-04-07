@@ -1,3 +1,3 @@
 (function () {
-    alert("Hello from embeded script.");
+    alert("Hello from embeded index.js");
 })();
